@@ -237,9 +237,16 @@ class MinesweeperAI():
         return change
 
     def cleanup_knowledge(self):
+        """
+        Removes empty sentences from knowledge base.
+        """
         self.knowledge = [sentence for sentence in self.knowledge if sentence.cells != set()]
 
     def infer_new_sentences(self):
+        """
+        Adds any new sentences to the AI's knowledge base
+        if they can be inferred from existing knowledge.
+        """
         change = False
         for sentence1, sentence2 in itertools.combinations(self.knowledge, 2):
             set1, set2 = sentence1.cells, sentence2.cells
